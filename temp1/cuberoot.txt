@@ -1,0 +1,68 @@
+def cuberoot(x,debug=False,specialCases=True):
+    if specialCases:
+        if x==0:
+            return 0.
+    s=1.
+    kmax=100
+    tol=1.0e-19
+    for k in range(kmax):
+        if debug:
+            print("at iteration number %s, s=%20.16f" %(k,s))
+        s0=s
+        s=(2*s**3 + x)/(3*s*s)
+        delta=s-s0
+        if(abs(delta)/x)<tol:
+            break
+        
+    if debug:
+        print("at iteration number %s, s=%20.19f" %(k+1,s))
+    return s
+    
+ def test_main():
+        from numpy import cbrt
+        svalues=[0.1,1,100,9]
+        for x in svalues:
+            print("testing with x=%10.23f" %x)
+            s=cuberoot(x)
+            s2=cbrt(x)
+            print("my cuberoot s=%20.15e, numpy s=%20.15e " %(s,s2))
+
+
+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//update token
+
+#### mysqrt in fortran via subroutines
+program mysqrt
+    implicit none
+    real(kind=8) :: k,z
+    k=2
+    call f(k,z)
+    print*, "z=", z
+end program mysqrt
+
+subroutine f(x,s)
+    implicit none
+    real(kind=8), intent(in)::x
+    real(kind=8) :: s0,tol
+    real(kind=8), intent(out)::s
+    integer :: i,kmax
+    logical :: debug
+    debug= .false.
+    if(x==0)then 
+        s=0
+    endif
+    s=1.
+    tol=1.0e-15
+    kmax=100
+    do i=1,kmax
+        if (debug) then
+        print*, " at ieration the value is ",i,s
+        exit
+        end if
+        s0=s
+        s=0.5*(s+x/s)
+        if(abs(s-s0)/x<tol) then
+        exit
+        end if
+    end do
+        
+end subroutine f
