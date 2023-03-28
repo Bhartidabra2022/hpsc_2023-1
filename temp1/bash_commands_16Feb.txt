@@ -1,0 +1,8 @@
+  992  printenv PYTHONPATH
+  993  export PYTHONPATH='/Users/bhutani'
+  994  printenv PYTHONPATH
+  995  PYTHONPATH="${PYTHONPATH}:/Users/bhutani/python"
+  996  printenv PYTHONPATH
+  997  PYTHONPATH="${PYTHONPATH}:/Users/bhutani/python/123"
+  998  printenv PYTHONPATH
+  999  printenv PYTHONPATH
